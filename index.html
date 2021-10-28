@@ -29,13 +29,34 @@
  </style>
  </head>
  <body>
- <div id="TextBox">
- <div id="menu">
- <div>自定義選單</div>
+    <table class="table table-bordered" style="margin-top:15px;" id="TextBox">
+        <thead>
+          <tr id="Im_head">
+            <th scope="col">#</th>
+            <th scope="col" id="table_head">1</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="Im_One">
+            <th class="col-1" scope="row">1</th>
+            <td class="col-1" onclick="nihow(0)" id="work0"></td>
+          </tr>
+          <tr id="Im_two">
+            <th class="col-1" scope="row">2</th>
+            <td class="col-1" onclick="nihow(1)" id="work1"></td>
+          </tr>
+          <tr id="Im_three">
+            <th class="col-1" scope="row">3</th>
+            <td class="col-1" onclick="nihow(2)" id="work2"></td>
+          </tr>
+        </tbody>
+      </table>
+    <div id="menu">
+        <div>自定義選單</div>
  <div>1</div>
  <div>2</div>
  <div>3</div>
- </div>
+    </div>
  </div>
  <script type="text/javascript">
  window.onload = function(){
