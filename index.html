@@ -1,86 +1,67 @@
-<html><head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>jQuery自定义区域的鼠标右键菜单</title>
-    <script src="jquery-3.5.1.min.js"></script>
-    <style type="text/css">
-    #mask{position: absolute;left: 0;top: 0;z-index: 9000;display: block;}
-    #myMenu{position: absolute;display: none;z-index: 9999;background: yellow;border: 1px solid;width: 200px;height: 155px;}
-    #textbox{background: orange;width: 380px;border: 2px solid;}
-    img{height: 30px;width: 30px;}
-    td{font-size: 20px;cursor: pointer;}
-    a{text-decoration: none;color: black;}
-    a: hover{color: white;background: black;}
-    </style>
-    <script type="text/javascript">
-    var windowwidth;
-    var windowheight;
-    var checkmenu;
-    $(window).ready(function() {
-     $('#myMenu').hide();
-       $('#textbox').bind("contextmenu",function(e){
-       windowwidth = $(window).width();
-       windowheight = $(window).height();
-       checkmenu = 1;
-       $('#mask').css({
-       'height': windowheight,
-       'width': windowwidth
-       });
-       $('#myMenu').show(500); 
-           $('#myMenu').css({
-           'top':e.pageY+'px',
-           'left':e.pageX+'px'
-           });
-           
-           return false;
-      });
-    $('#mask').click(function(){
-    $(this).height(0);
-    $(this).width(0);
-    $('#myMenu').hide(500);
-    checkmenu = 0;
-    return false;
-    });
-    $('#mask').bind("contextmenu",function(){
-    $(this).height(0);
-    $(this).width(0);
-    $('#myMenu').hide(500);
-    checkmenu = 0;
-    return false;
-    });
-    $(window).resize(function(){
-    if(checkmenu == 1) {
-    windowwidth = $(window).width();
-      windowheight = $(window).height();
-      $('#mask').css({
-      'height': windowheight,
-      'width': windowwidth,
-      });
-    }
-    });
-    });
-    </script>
-    </head>
-    <body>
-    <div id="myMenu" style="display: block; top: 76px; left: 276px;">
-    <table cellspace="3">
-    <tbody><tr>
-    <td><img src="images/twitter.png"></td><td><a href="#">tweet me</a></td>
-    </tr>
-    <tr>
-    <td><img src="images/facebook.png"> </td><td><a href="#">facebook share</a></td>
-    </tr>
-    <tr>
-    <td><img src="images/myspace.png"> </td><td><a href="#">myspace share</a></td>
-    </tr>
-    <tr>
-    <td><img src="images/mail.png"> </td><td><a href="#">e-mail this</a></td>
-    </tr>
-    </tbody></table>
-    </div>
-    <div id="mask" style="height: 937px; width: 1008px;"> </div>
-    <div id="textbox">
-    <p>嗨！您好，在这个区域内点击您的鼠标右键吧，会弹出一个自定义的右键菜单，和浏览器的右键菜单完全不一样哦！</p><p>
-     </p></div>
-     <div>
-    
-    </div></body></html>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+ <title>ㄎㄎ</title>
+ <style type="text/css">
+ #TextBox{
+ width: 200px;
+ height: 200px;
+ border: 1px solid #000;
+ }
+ #menu{
+ position: absolute;
+ border: 1px solid #000;
+ }
+ #menu > div:nth-child(2){
+ border-top: 1px solid #000;
+ }
+ #menu > div:nth-child(3){
+ border-top: 1px solid #000;
+ }
+ #menu > div:nth-child(4){
+ border-top: 1px solid #000;
+ }
+ #menu > div:hover{
+ cursor: pointer;
+ background-color: #0078E7;
+ }
+ </style>
+ </head>
+ <body>
+ <div id="TextBox">
+ <div id="menu">
+ <div>自定義選單</div>
+ <div>1</div>
+ <div>2</div>
+ <div>3</div>
+ </div>
+ </div>
+ <script type="text/javascript">
+ window.onload = function(){
+ var TextBox = document.getElementById("TextBox");
+ var ul = document.getElementById("menu"); //獲取ul節點物件
+ ul.style.display = "none";
+ /*為document繫結滑鼠右鍵選單事件*/
+ TextBox.oncontextmenu = function(e){
+  var _event = window.event||e; //事件物件
+  var x = _event.clientX; // 滑鼠的x座標
+  var y = _event.clientY; //滑鼠的y座標
+  
+  ul.style.display = "block";
+  ul.style.left = x + "px"; //改變ul的座標
+  ul.style.top = y + "px";
+  //阻止預設行為
+  if(_event.preventDefault){
+  _event.preventDefault(); //標準格式
+  }else{
+  _event.returnValue = false; //IE格式
+  }
+ }
+ TextBox.onclick = function(){
+  ul.style.display = "none";
+ }
+ }
+ </script>
+ </body>
+</html>
